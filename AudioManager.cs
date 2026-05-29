@@ -1,37 +1,30 @@
 using System;
-using System.IO;
-using System.Media;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 
-namespace CybersecurityBot
+namespace Prog_part1
 {
-    static class AudioManager
+    public static class AudioManager
     {
         public static void PlayGreeting()
         {
-            string[] searchDirs = { AppDomain.CurrentDomain.BaseDirectory, Directory.GetCurrentDirectory() };
-
-            string wavPath = null;
-            foreach (string dir in searchDirs)
+            try
             {
-                try
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
                 {
-                    var wavFiles = Directory.GetFiles(dir, "*.wav", SearchOption.TopDirectoryOnly);
-                    if (wavFiles.Length > 0) { wavPath = wavFiles[0]; break; }
+                    // This explicitly calls your Mac's built-in speech engine
+                    Process.Start("say", "\"Hello! Welcome to the Cybersecurity Awareness Bot. I'm here to help you stay safe online.\"");
                 }
-                catch { }
+                else
+                {
+                    Console.Write("\a"); // Fallback system beep
+                }
             }
-
-            if (!string.IsNullOrEmpty(wavPath))
+            catch
             {
-                using (var player = new SoundPlayer(wavPath))
-                {
-                    player.Load();
-                    player.PlaySync();
-                }
-                return;
+                // Fallback catch if the audio channels are busy
+                Console.Beep();
             }
-
-            try { Console.Beep(800, 200); } catch { }
         }
     }
 }
