@@ -15,3 +15,15 @@ To install CybersecurityBot, follow these steps:
 1. Clone the repository:
    ```bash
    git clone https://github.com/ShannonRS-maker/Prog-part1.git
+# PROG6221 Part 2 - Chatbot Application
+
+### Student Details
+* **Name:** Shannon R. September
+* **Student Number:** ST10485361
+
+### Project Description
+An interactive C# console-based application designed to run a secure chatbot interface with custom keyword triggers, automated sentiment logging, and memory stores.
+
+### Execution Instructions
+To run this console application natively on a local environment, navigate into the project directory and execute:
+`dotnet run`
